@@ -142,5 +142,48 @@ $ sudo chown www-data /var/www/html/moodledata
 <p>Now we will configure NGINX to serve files from moodle folder. For that, we will create a virtual host configuration file in NGINX.</p>
 
 ```
-$ sudo vi /etc/nginx/sites-available/moodle.conf
+$ sudo vi /etc/nginx/sites-available/moodle
 ```  
+<p>Copy paste the following configuration in the above file. Replace example.com below with your domain name.</p>
+
+```
+server {
+    listen 80;
+    listen [::]:80;
+    root /var/www/html/moodle;
+    index  index.php index.html index.htm;
+    server_name  example.com www.example.com;
+
+    location / {
+    try_files $uri $uri/ =404;        
+    }
+ 
+    location /dataroot/ {
+    internal;
+    alias /var/www/html/moodledata/;
+    }
+
+    location ~ [^/]\.php(/|$) {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+}
+```
+
+  <p>Enable Moodle site in NGINX by creating a symlink as shown below.</p>
+
+```
+$ sudo ln -s /etc/nginx/sites-available/moodle /etc/nginx/sites-enabled/
+```
+
+  <p>Restart NGINX Server to apply changes.</p>
+
+```
+$ sudo service nginx restart
+```
+### 7. Configure Moodle
+
+<p>Open browser and go to your website (e.g. http://example.com) hosting your Moodle site. You will see the following installation screeen.</p>
