@@ -78,3 +78,69 @@ $ sudo apt update
 $ sudo apt install php7.1-fpm php7.1-common php7.1-mbstring php7.1-xmlrpc php7.1-soap php7.1-gd php7.1-xml php7.1-intl php7.1-mysql php7.1-cli php7.1-mcrypt php7.1-ldap php7.1-zip php7.1-curl
 ```
   
+  <p>Open PHP-FPM config file.</p>
+  
+  ```
+  sudo vi /etc/php/7.1/fpm/php.ini
+  
+  ```
+  <p>Add/Update the values as shown. You may change it as per your requirement.</p>
+  
+```
+file_uploads = On 
+allow_url_fopen = On 
+memory_limit = 256M 
+upload_max_filesize = 64M 
+max_execution_time = 360 
+cgi.fix_pathinfo = 0 
+date.timezone = America/Chicago
+```
+  
+### 4. Create Moodle Database
+  <p>Log into MySQL and create database for Moodle.</p>
+
+  ```
+$ sudo mysql -u root -p
+```
+
+<p>Create a database for moodle, a database user to access it, and also grant full access to this user. Replace moodle_user and moodle_password with your choice of username and password.</p>
+  
+```
+CREATE DATABASE moodle;
+CREATE USER 'moodle_user'@'localhost' IDENTIFIED BY 'moodle_password';
+GRANT ALL ON moodle.* TO 'moodle_user'@'localhost' IDENTIFIED BY 'moodle_password' WITH GRANT OPTION;
+```
+  <p>Flush privileges to apply changes.</p>
+
+```
+FLUSH PRIVILEGES; 
+EXIT;
+```
+
+### 5. Download & Install Moodle
+ <p>Run the following command to download Moodle package.</p>
+  
+```
+$ cd /tmp && wget https://download.moodle.org/download.php/direct/stable33/moodle-latest-33.tgz
+ 
+```
+   <p>Run the following command to extract package to NGINX website root folder.</p>
+ 
+```  
+$ sudo tar -zxvf moodle-latest-33.tgz 
+$ sudo mv moodle /var/www/html/moodle 
+$ sudo mkdir /var/www/html/moodledata
+```
+  <p>Change the folder permissions.</p>
+
+```
+$ sudo chown -R www-data:www-data /var/www/html/moodle/ 
+$ sudo chmod -R 755 /var/www/html/moodle/ 
+$ sudo chown www-data /var/www/html/moodledata
+```
+### 6. Configure NGINX
+<p>Now we will configure NGINX to serve files from moodle folder. For that, we will create a virtual host configuration file in NGINX.</p>
+
+```
+$ sudo vi /etc/nginx/sites-available/moodle.conf
+```  
