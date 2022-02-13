@@ -93,7 +93,7 @@ memory_limit = 256M
 upload_max_filesize = 64M 
 max_execution_time = 360 
 cgi.fix_pathinfo = 0 
-date.timezone = America/Chicago
+date.timezone = Asia/Manila
 ```
   
 ### 4. Create Moodle Database
