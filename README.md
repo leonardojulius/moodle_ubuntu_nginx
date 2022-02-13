@@ -6,7 +6,7 @@ Install Moodle LMS on Ubuntu 20 using (NGINX)
   <img src="https://moodle.org/theme/image.php/moodleorg/theme_moodleorg/1642682278/moodle_logo_small" alt="Sublime's custom image"/>
 </p>
 
-Source from [https://fedingo.com/](https://computingforgeeks.com/install-node-js-14-on-ubuntu-debian-linux/).
+Source from [https://fedingo.com/](https://fedingo.com/how-to-install-moodle-with-nginx-on-ubuntu/).
 
 Layout Guide [Github-Formatting](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
@@ -187,3 +187,32 @@ $ sudo service nginx restart
 ### 7. Configure Moodle
 
 <p>Open browser and go to your website (e.g. http://example.com) hosting your Moodle site. You will see the following installation screeen.</p>
+
+![image](https://user-images.githubusercontent.com/16941074/153736465-ee9cef9e-1f79-4953-91e1-38e7b973c624.png)
+
+  <p>Select English from the dropdown and click Next.</p>
+
+  <p>On next screen, accept default values and click Next.</p>
+
+![image](https://user-images.githubusercontent.com/16941074/153736489-ebbe845e-4a25-4508-9f79-2ef52da30ded.png)
+
+  <p>On next screen, select MariaDB database driver from dropdown and click next.</p>
+
+![image](https://user-images.githubusercontent.com/16941074/153736495-3a096ebf-0bad-485e-b6e7-3758f69ca44d.png)
+
+  <p>Enter database user details that you had entered in Step 4.</p>
+  
+![image](https://user-images.githubusercontent.com/16941074/153736573-a7094af3-71dc-4140-9822-be8b36a48b15.png)
+
+  <p>On next screen, enter username admin and enter password of your choice and click Next.</p>
+  
+![image](https://user-images.githubusercontent.com/16941074/153736584-ca21d751-b519-4559-8928-e3af19cb0d20.png)
+
+  <p>Continue the wizard until you have provided the required information and set up the site. When it is complete, Moodle will be installed & ready to use.</p>
+  
+![image](https://user-images.githubusercontent.com/16941074/153736590-cdc6e8a9-f34e-4269-92ed-953e1989639c.png)
+
+  <p>In this article, we have listed the various steps to install Moodle with NGINX in Ubuntu.</p>
+
+
+
